@@ -1,0 +1,394 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Oswald&display=swap');
+
+/* Asterix sign below targets all elements */
+
+*{
+  margin: 0;
+  padding: 0;
+  border: 0;
+  /* Because of specificity order of rules matter. So at the top we start with general rules and then get more specific as we go down */
+}
+
+body {
+    font-family: Lato;
+    font-weight: 300;
+    color: #777777;
+}
+
+h2 {
+  font-family: oswald;
+  text-transform: uppercase;
+  letter-spacing: 4;
+  color: #777777;
+}
+#logo {
+  float: left;
+  font-size: 280%;
+  margin-left: 30px;
+}
+#menu {
+  font-size: 110%;
+  list-style-type: none;
+  letter-spacing: 4px;
+}
+/* Comma under here is to target both logo and menu. If there wasn't comma it would look for menu that is a child of logo*/
+#logo, #menu {
+line-height: 75px;
+/*Centers logo and menu vertically, and it needs to be set to value that can fit both heights*/
+}
+#menu li {
+  float: right;
+  margin-right: 30px;
+}
+#menu a {
+  /*text-decoration removes underline from link */
+  text-decoration: none;
+  color: inherit;
+}
+/* Pseudo class changes states of elements. In this case pseudo class hover changes state of any hyperlinks that are children of menu */
+#menu a:hover {
+  border-bottom: 1px solid #777777
+}
+
+/* Active class provides visual clue; underlines current page menu link */
+.active {
+  border-bottom: 1px solid #777777
+}
+
+#hero-image {
+  height: 600px;
+  width: 100%;
+  background: url("http://codeinstitute.s3.amazonaws.com/FundamentalsProjects/HTML-CSS/main-image.png") no-repeat center center;
+
+  /* Code above sets background image and sets values no-repeat (doesn't repeat if there's space), center center (which centers image vertically and horizontally) */
+
+  /*All the background images used throughout the site have been included as purely decorative elements. As such we have chosen to set them using the CSS background-image property. We did this to apply styles to the image parent containers. Where images are used in any context other than purely decorative they should be set using the <img> element and have the alt attribute set to provide accessible information. */
+
+  animation-name: hero-zoom;
+  animation-duration: 5s;
+  animation-fill-mode: forwards;
+  /* Above code is continued from keyframes below. It sets basic things like duration and style. fill mode forwards makes sure that image stays zoomed after animation is done */
+}
+
+#hero-outer {
+  height: 600px;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  /* position relative is there to be able to apply absolute position to it's children (cover text) */
+
+  /* hero-outer will make animation effect on hero image when it loads and it will clear header from image (remove overlap of logo and image). Set h & w values same as hero image, and overflow to hidden (which hiddes edges of image after it's zoomed */
+}
+
+/* Animation is defined using @keyframes rule followed by chosen name. From is initial state and is set to 100%, while to is end state and is set to 110%. Since we want this action to happen when browser renders the image, rest of the code goes to hero image id */
+
+@keyframes hero-zoom {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.1);
+  }
+}
+
+/* Below overrides default color for h2*/
+#cover-text, #cover-text h2 {
+  color: #ffffff;
+}
+
+#cover-text {
+  font-size: 130%;
+  font-family: oswald;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+
+  width: 300px;
+  height: 200px;
+
+  padding-top: 40px;
+  padding-left: 10px;
+/* Below 0.7 sets the opacity for the color to be seethrough */
+  background-color: rgba(241, 109, 107, .7);
+
+/*Below values fix the container 30px from bottom and 150px from the right, relative to parent hero image */
+  bottom: 30px;
+  right: 150px;
+  /* Position absolute fixes it in place, but it's parent needs to have it's position set to relative otherwise cover text will be fixed but but not to the image but rather to entire screen which is it's default behavior */
+  position: absolute;
+}
+
+#club-ethos {
+  height: 600px;
+}
+
+#left-about {
+  padding-top: 30px;
+  width: 33%;
+  float: left;
+}
+
+#right-about {
+  padding-top: 30px;
+  width: 33%;
+  float: right;
+}
+
+#center-about {
+  width: 33%;
+  margin: 0 auto;
+  /* margin 0 auto is there because there is no float center, but in order for it to work like this our center div must be written last (after left and right) */
+}
+
+hr {
+  border-top: 1px solid #777777;
+  width: 100%;
+  margin: 5px 0; 
+}
+
+.left-about-heading {
+  width: 50%;
+  float: right;
+  line-height: 20px;
+  clear: both;
+  margin-bottom: 50px;
+  /* clear both alignes each block vertically (without it both div are next to each other instead under each other. margin bottom makes some breathing room between two divs. float makes it float towards the right (towards the photo). width 50% makes it 50% of it's parent which again is set to 33% of total */
+}
+
+.right-about-heading {
+  width: 50%;
+  float: left;
+  line-height: 20px;
+  clear: both;
+  margin-bottom: 50px;
+}
+
+.right-about-heading h2 {
+  text-align: right;
+}
+.right-about.heading p {
+  text-align: right;
+}
+/* above two styles align both right sides h2 and p to the right. It creates an effect of text curving around center image */
+#welcome {
+  text-align: center;
+  margin: 20px 0; /*pushes text down 20px from hero image */
+  font-size: 280%;
+}
+
+#circle-container {
+  width: 300px;
+  height: 300px;
+  padding: 30px;
+  border-style: solid;
+  border-color: #cccccc;
+  border-width: 1px;
+  border-radius: 50%; /* makes a circle, but only with containers with same height and width, otherwise it would make an elipse */
+  margin: 0 auto; /*trick to center middle containers */
+}
+
+#circle-cover-bg {
+  background: url(http://codeinstitute.s3.amazonaws.com/FundamentalsProjects/HTML-CSS/video-mask.png) no-repeat center center;
+  height: 100%; /* makes it 100% of it's parent div */
+  border-radius: 50%; 
+}
+
+#times {
+  background-image: url("http://codeinstitute.s3.amazonaws.com/FundamentalsProjects/HTML-CSS/dublin-city.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  width:100%;
+  overflow: hidden;
+    /* no-repeat can be separate like here or can be right after link like in previous examples. size-cover will fit image in allocated section dimensions */
+}
+
+#times div {
+  /* targets div children of times id */
+  color: #fafafafa; /* changes the color of the text */
+  background-color: rgba(0,0,0, .6);
+  width: 19%; /* We have 5 panels along each other so each should be 20% of the screen width, but since we want some separation between them we put 19%  */
+  height: 300px;
+  float: left; /* Makes panels display horizontally next to each other */
+  padding: 30px 0 0 10px; /* 30px for the top and 10px for the left */
+  text-align: center;
+  margin: 2px /* Creates some breathing room between panels */
+}
+
+#times h2 {
+  /* targets h2 children of times id in order to change the color just for our trail/urban/coffee letters */
+  color: #fafafa;
+}
+
+footer {
+  height: 150px;
+}
+
+.social-networks {
+  text-align: center;
+}
+
+.social-networks li {
+  display: inline;
+}
+
+.social-networks i {
+  font-size: 160%;
+  margin: 1%;
+  padding: 5%;
+  color: #777777;
+}
+
+#photo {
+  clear:both; /* this makes section and the photos display below the header */
+  line-height: 0; /* removes horizontal gaps between images */
+  column-count: 4; /* put 4 photos in a row */
+  column-gap: 0px; /* this removes vertical gap between photos, but there still might be some gap and overlay as photos are different sizes, so we have to target images in photo section with id below this */
+}
+
+#photo img {
+  width: 100%;
+}
+
+/* Now that site has all content and is mostly finished, we need to make sure it would show properly on all screen sizes. We do this with css construct called media query. They are only called when certain criteria is met, e.g. when screen size goes below certain size. */
+
+/* all styles will activate when screen comes below 1393 and will be active until overridden by below phone styles when it gets smalller than 943. all styles not defined in 943 rules will stay the same as defined here, e.g. id times, which will be defined below and will be active for both screen sizes because it's not defined again in 943 rules */
+
+/* Below is copied signup form from challenge - until @media */
+
+.form-section {
+    clear: left;
+    background: url("http://codeinstitute.s3.amazonaws.com/FundamentalsProjects/HTML-CSS/formbg.jpg");
+    background-size: cover;
+    background-position: center;
+    height: 900px;
+}
+
+.signup-form {
+  margin-top: 150px;
+  color: #fff;
+  background-color: rgba(60,60,60,0.6);
+  max-width: 400px;
+  position: absolute;
+  left: 10%;
+  padding: 30px;
+}
+
+.signup-form h2 {
+  color: #fafafa;
+  margin-bottom: 20px;
+}
+
+.text-input {
+  background: transparent;
+  color: #fafafa;
+  width: 100%;
+  height: 25px;
+  margin: 5px 0 20px;
+  border: 1px solid #fafafa;
+  border-radius: 2px;
+}
+
+.text-input:hover {
+  border-color: #f16c6b;
+}
+
+.join-button {
+  margin-top: 20px;
+  border-radius: 2px;
+  padding: 15px 32px;
+  text-align: center;
+  font-size: 100%;
+  background-color: #f16c6b;
+  color: #fafafa;
+  display: block;
+}
+
+.join-button:hover {
+  background-color: #fafafa;
+  color: #f16c6b;
+  
+}
+
+@media screen and (max-width: 1393px) {
+  /* 1393px here specifically is because at that size or smaller our club ethos becomes distorted */
+  #club-ethos {
+    width:65%;
+    height: 1200px;
+    margin: 0 auto; /* centers the content */
+  }
+
+  #welcome {
+    padding: 30px 0; /* keeps the balance between welcome message and main image above */
+    margin-top: 0; /* additionally clears up the vertical gap */
+  }
+
+  #left-about, #right-about { /* styles both left and right about sections because of comma */
+    width:100%;
+    float: left;
+    padding: 0; /* overwrites any default desktop level padding */
+  }
+
+  #times div {
+    width: 100%;
+    clear: both; /*stacks divs vertically */
+    height: 150%;
+    border-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: #fff;
+    padding: 0; /* clears any unwanted desktop size padding */
+  }
+
+  #center-about {
+    clear: both;
+    width: 100%;
+    float: left;
+    padding: 0;
+    /* all this above pushes the center image under the left and right ethos sections */
+  }
+  hr {
+    display: none; /* removes horizontal lines under text in ethos section titles */
+  }
+}
+
+/* above styles style page for tablet view, and below styles will style for phone use. we set to 943 because at that point it becomes unstable on phones. except changes like above we will need to style header aswell as it gets too big for phone use */
+
+@media screen and (max-width: 943px) {
+#menu {
+  clear: left;
+  float: left;
+  /* above two push navigation items below and to the left of our logo */
+  margin-left: 30px; /* creates some breathing space between elements and edge of the screen */
+  margin-bottom: 20px;
+  line-height: 25px;
+  /* above two create balance between logo and main image below */
+}
+#cover-text {
+  left: 0px; /* aligns left edge of cover text till left edge of the screen, because our text was getting cropped out at phone level */
+}
+#club-ethos {
+  width: 90%;
+  height: 1200px;
+  margin: 0 auto;
+}
+.left-about-heading, .right-about-heading {
+  width: inherit; /* set to inherit from parent section */
+}
+.left-about-heading h2, .right-about-heading h2 {
+  width: 100%;
+  text-align: center;
+}
+.left-about-heading p, .right-about-heading p {
+  text-align: center;
+  padding: 0 20px 0 20px;
+}
+
+#photo {
+  column-count: 3; /*sets gallery page to display 3 images horizontally if screen gets smaller*/
+}
+}
+
+@media screen and (max-width: 800px) {
+  #photo {
+    column-count: 2; /*displays only two photos horizontally if screen gets really small */
+  }
+}
